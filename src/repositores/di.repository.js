@@ -30,7 +30,7 @@ const getDIs = async () => {
 			include: [
 				{
 					model: ClienteModel,
-				},
+				}
 			],
 		})
 	} catch (error) {
@@ -44,7 +44,7 @@ const getDI = async (id) => {
 			include: [
 				{
 					model: ClienteModel,
-				},
+				}
 			],
 		})
 	} catch (error) {

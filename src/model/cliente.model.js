@@ -24,6 +24,10 @@ const Cliente = DbConnection.define(
 	{ tableName: 'cliente' }
 )
 
+Cliente.associate = (models) => {
+	Cliente.belongsTo(models.di.model)
+}
+
 Cliente.sync({})
 
 export default Cliente

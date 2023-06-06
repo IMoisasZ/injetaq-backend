@@ -6,6 +6,7 @@ import winston from 'winston'
 import ClienteRoute from './src/routes/cliente.route.js'
 import SetorRoute from './src/routes/setor.route.js'
 import DIRoute from './src/routes/di.route.js'
+import AlertaQualidadeRoute from './src/routes/alertaQualidade.route.js'
 
 // app
 const app = express()
@@ -20,6 +21,7 @@ app.use(cors())
 app.use('/cliente', ClienteRoute)
 app.use('/setor', SetorRoute)
 app.use('/di', DIRoute)
+app.use('/alerta_qualidade', AlertaQualidadeRoute)
 
 // winston(log)
 const { combine, timestamp, label, printf } = winston.format

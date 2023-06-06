@@ -67,6 +67,6 @@ const DI = DbConnection.define(
 
 DI.sync({})
 
-DI.belongsTo(ClientModel, { foreignKey: 'client_id' })
+DI.hasMany(ClientModel, {foreignKey: 'id'})
 
 export default DI
