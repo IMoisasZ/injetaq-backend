@@ -1,4 +1,4 @@
-import Sequelize from 'sequelize'
+import Sequelize, { INET } from 'sequelize'
 import DbConnection from '../connection/mysql.connection.js'
 import ClientModel from './cliente.model.js'
 
@@ -11,6 +11,10 @@ const DI = DbConnection.define(
 			type: INTEGER,
 			autoIncrement: true,
 			primaryKey: true,
+		},
+		user_id: {
+			type: INTEGER,
+			allowNull: false
 		},
 		di: {
 			type: INTEGER,
@@ -67,6 +71,6 @@ const DI = DbConnection.define(
 
 DI.sync({})
 
-DI.hasMany(ClientModel, {foreignKey: 'id'})
+DI.belongsTo(ClientModel, {foreignKey: 'client_id'})
 
 export default DI

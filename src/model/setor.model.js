@@ -10,6 +10,10 @@ const Setor = DbConnection.define(
 			primaryKey: true,
 			autoIncrement: true,
 		},
+		user_id: {
+			type: INTEGER,
+			allowNull: false
+		},
 		description: {
 			type: STRING,
 			allowNull: false,
@@ -23,6 +27,6 @@ const Setor = DbConnection.define(
 	{ tableName: 'setor' }
 )
 
-Setor.sync({})
+Setor.sync({alter: true})
 
 export default Setor

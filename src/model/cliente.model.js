@@ -11,6 +11,10 @@ const Cliente = DbConnection.define(
 			primaryKey: true,
 			autoIncrement: true,
 		},
+		user_id: {
+			type: INTEGER,
+			allowNull: false
+		},
 		description: {
 			type: STRING,
 			allowNul: false,
