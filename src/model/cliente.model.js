@@ -13,7 +13,7 @@ const Cliente = DbConnection.define(
 		},
 		user_id: {
 			type: INTEGER,
-			allowNull: false
+			allowNull: false,
 		},
 		description: {
 			type: STRING,
@@ -32,6 +32,6 @@ Cliente.associate = (models) => {
 	Cliente.belongsTo(models.di.model)
 }
 
-Cliente.sync({})
+Cliente.sync({ alter: true })
 
 export default Cliente

@@ -4,11 +4,12 @@ import winston from 'winston'
 
 // routes
 import ClienteRoute from './src/routes/cliente.route.js'
-import SetorRoute from './src/routes/setor.route.js'
+import SectorRoute from './src/routes/sector.route.js'
 import DIRoute from './src/routes/di.route.js'
 import AlertaQualidadeRoute from './src/routes/alertaQualidade.route.js'
-import ResponsableRoute from './src/routes/responsable.route.js'
+import ResponsableSectorRoute from './src/routes/responsableSector.route.js'
 import ContactClientRoute from './src/routes/contactClient.route.js'
+import SupplierRoute from './src/routes/supplier.route.js'
 
 // app
 const app = express()
@@ -21,12 +22,12 @@ app.use(cors())
 
 // routes
 app.use('/cliente', ClienteRoute)
-app.use('/setor', SetorRoute)
+app.use('/sector', SectorRoute)
 app.use('/di', DIRoute)
 app.use('/alerta_qualidade', AlertaQualidadeRoute)
-app.use('/responsable', ResponsableRoute)
+app.use('/responsable_sector', ResponsableSectorRoute)
 app.use('/contact_client', ContactClientRoute)
-
+app.use('/supplier', SupplierRoute)
 // winston(log)
 const { combine, timestamp, label, printf } = winston.format
 const myformat = printf(({ level, message, label, timestamp }) => {

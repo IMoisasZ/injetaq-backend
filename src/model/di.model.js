@@ -14,7 +14,7 @@ const DI = DbConnection.define(
 		},
 		user_id: {
 			type: INTEGER,
-			allowNull: false
+			allowNull: false,
 		},
 		di: {
 			type: INTEGER,
@@ -69,8 +69,8 @@ const DI = DbConnection.define(
 	{ tableName: 'di' }
 )
 
-DI.sync({})
+DI.sync({ alter: true })
 
-DI.belongsTo(ClientModel, {foreignKey: 'client_id'})
+DI.belongsTo(ClientModel, { foreignKey: 'client_id' })
 
 export default DI
