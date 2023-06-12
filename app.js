@@ -1,6 +1,10 @@
 import express from 'express'
 import cors from 'cors'
 import winston from 'winston'
+import path from 'path'
+import { fileURLToPath } from 'url'
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 // routes
 import ClienteRoute from './src/routes/cliente.route.js'
@@ -10,6 +14,9 @@ import AlertaQualidadeRoute from './src/routes/alertaQualidade.route.js'
 import ResponsableSectorRoute from './src/routes/responsableSector.route.js'
 import ContactClientRoute from './src/routes/contactClient.route.js'
 import SupplierRoute from './src/routes/supplier.route.js'
+import ContactSupplierRoute from './src/routes/contactSupplier.route.js'
+import ImagesRoute from './src/routes/images.route.js'
+import { log } from 'console'
 
 // app
 const app = express()
@@ -28,6 +35,14 @@ app.use('/alerta_qualidade', AlertaQualidadeRoute)
 app.use('/responsable_sector', ResponsableSectorRoute)
 app.use('/contact_client', ContactClientRoute)
 app.use('/supplier', SupplierRoute)
+app.use('/contact_supplier', ContactSupplierRoute)
+app.use('/images', ImagesRoute)
+
+console.log(__dirname)
+
+// route image
+app.use('/files', express.static(path.resolve(__dirname, 'src', 'uploads')))
+
 // winston(log)
 const { combine, timestamp, label, printf } = winston.format
 const myformat = printf(({ level, message, label, timestamp }) => {

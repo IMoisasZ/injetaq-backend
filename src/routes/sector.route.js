@@ -1,12 +1,12 @@
 import { Router } from 'express'
-import SetorController from '../controller/sector.controller.js'
+import SectorController from '../controller/sector.controller.js'
 
 const route = Router()
 
-route.post('/add', SetorController.createSetor)
-route.patch('/update', SetorController.updateSetor)
-route.get('/data', SetorController.getSetores)
-route.get('/data/:id', SetorController.getSetor)
-route.put('/update', SetorController.disableEnableSetor)
+route.post('/add', SectorController.createSector)
+route.patch('/update', SectorController.updateSector)
+route.get('/data', SectorController.getSectors)
+route.get('/data/:id', SectorController.getSector)
+route.put('/update', SectorController.disableEnableSector)
 
 export default route

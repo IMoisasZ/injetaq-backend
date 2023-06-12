@@ -1,5 +1,6 @@
 import Sequelize from 'sequelize'
 import DbConnection from '../connection/mysql.connection.js'
+import ContactSupplierModel from '../model/contactSupplier.model.js'
 
 const { INTEGER, STRING, BOOLEAN } = Sequelize
 
@@ -27,6 +28,9 @@ const Supplier = DbConnection.define(
 	{ tableName: 'supplier' }
 )
 
-Supplier.sync({ alter: true })
+Supplier.sync()
+
+Supplier.hasMany(ContactSupplierModel, { foreignKey: 'supplier_id' })
+ContactSupplierModel.belongsTo(Supplier, { foreignKey: 'id' })
 
 export default Supplier

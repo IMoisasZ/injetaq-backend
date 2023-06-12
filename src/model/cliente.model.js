@@ -1,10 +1,12 @@
-import Sequelize from 'sequelize'
+import { Sequelize } from 'sequelize'
 import DbConnection from '../connection/mysql.connection.js'
+import ContactClient from './contactClient.model.js'
+import DIModel from './di.model.js'
 
 const { INTEGER, STRING, BOOLEAN } = Sequelize
 
-const Cliente = DbConnection.define(
-	'cliente',
+const Client = DbConnection.define(
+	'Client',
 	{
 		id: {
 			type: INTEGER,
@@ -25,13 +27,14 @@ const Cliente = DbConnection.define(
 			defaultValue: true,
 		},
 	},
-	{ tableName: 'cliente' }
+	{ tableName: 'client' }
 )
 
-Cliente.associate = (models) => {
-	Cliente.belongsTo(models.di.model)
-}
+Client.sync()
 
-Cliente.sync({ alter: true })
+Client.hasMany(ContactClient, { foreignKey: 'client_id' })
+ContactClient.belongsTo(Client, { foreignKey: 'id' })
+Client.hasMany(DIModel, { foreignKey: 'client_id' })
+DIModel.belongsTo(Client, { foreignKey: 'id' })
 
-export default Cliente
+export default Client

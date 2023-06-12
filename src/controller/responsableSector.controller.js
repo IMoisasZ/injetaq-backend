@@ -19,7 +19,7 @@ const createResponsableSector = async (req, res, next) => {
 		res.send(
 			await ResponsableSectorService.createResponsableSector(responsable)
 		)
-		loggers.info(
+		logger.info(
 			`POST - /responsable_sector/add - ${JSON.stringify(responsable)}`
 		)
 	} catch (error) {
@@ -46,7 +46,7 @@ const updateResponsableSector = async (req, res, next) => {
 		res.send(
 			await ResponsableSectorService.updateResponsableSector(responsable)
 		)
-		loggers.info(
+		logger.info(
 			`PATCH - /responsable_sector/update - ${JSON.stringify(responsable)}`
 		)
 	} catch (error) {
@@ -57,7 +57,7 @@ const updateResponsableSector = async (req, res, next) => {
 const getResponsablesSector = async (req, res, next) => {
 	try {
 		res.send(await ResponsableSectorService.getResponsablesSector())
-		loggers.info(`GET - /responsable_sector/data - ALL RESPONSABLES`)
+		logger.info(`GET - /responsable_sector/data - ALL RESPONSABLES`)
 	} catch (error) {
 		next(error)
 	}
@@ -70,7 +70,7 @@ const getResponsablesBySector = async (req, res, next) => {
 				req.params.sector_id
 			)
 		)
-		loggers.info(
+		logger.info(
 			`GET - /responsable_sector/sector/data/:${req.params.sector_id} - ALL RESPONSABLES BY SETOR`
 		)
 	} catch (error) {
@@ -81,7 +81,7 @@ const getResponsablesBySector = async (req, res, next) => {
 const getResponsableSector = async (req, res, next) => {
 	try {
 		res.send(await ResponsableSectorService.getResponsableSector(req.params.id))
-		loggers.info(`GET - /responsable_sector/data/:${req.params.id}`)
+		logger.info(`GET - /responsable_sector/data/:${req.params.id}`)
 	} catch (error) {
 		next(error)
 	}
@@ -93,7 +93,7 @@ const disableEnableResponsableSector = async (req, res, next) => {
 		res.send(
 			await ResponsableSectorService.disableEnableResponsableSector(data)
 		)
-		loggers.info(`PUT - /responsable_sector/update - ${JSON.stringify(data)}`)
+		logger.info(`PUT - /responsable_sector/update - ${JSON.stringify(data)}`)
 	} catch (error) {
 		next(error)
 	}

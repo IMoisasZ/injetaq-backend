@@ -1,4 +1,5 @@
 import ResponsableSectorModel from '../model/responsableSector.model.js'
+import SectorModel from '../model/sector.model.js'
 
 const createResponsableSector = async (responsable) => {
 	try {
@@ -24,7 +25,13 @@ const updateResponsableSector = async (responsable) => {
 
 const getResponsablesSector = async () => {
 	try {
-		return await ResponsableSectorModel.findAll()
+		return await ResponsableSectorModel.findAll({
+			include: [
+				{
+					model: SectorModel,
+				},
+			],
+		})
 	} catch (error) {
 		throw error
 	}

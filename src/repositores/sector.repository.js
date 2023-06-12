@@ -1,46 +1,49 @@
-import SetorModel from '../model/sector.model.js'
+import SectorModel from '../model/sector.model.js'
+import ResponsableSectorModel from '../model/responsableSector.model.js'
 
-const createSetor = async (setor) => {
+const createSector = async (setor) => {
 	try {
-		const newSetor = await SetorModel.create(setor)
-		return await getSetor(newSetor.id)
+		const newSetor = await SectorModel.create(setor)
+		return await getSector(newSetor.id)
 	} catch (error) {
 		throw error
 	}
 }
 
-const updateSetor = async (setor) => {
+const updateSector = async (setor) => {
 	try {
-		await SetorModel.update(setor, {
+		await SectorModel.update(setor, {
 			where: {
 				id: setor.id,
 			},
 		})
-		return await getSetor(setor.id)
+		return await getSector(setor.id)
 	} catch (error) {
 		throw error
 	}
 }
 
-const getSetores = async () => {
+const getSectors = async () => {
 	try {
-		return await SetorModel.findAll()
+		return await SectorModel.findAll({
+			include: { model: ResponsableSectorModel },
+		})
 	} catch (error) {
 		throw error
 	}
 }
 
-const getSetor = async (id) => {
+const getSector = async (id) => {
 	try {
-		return await SetorModel.findByPk(id)
+		return await SectorModel.findByPk(id)
 	} catch (error) {
 		throw error
 	}
 }
 
-const disableEnableSetor = async (data) => {
+const disableEnableSector = async (data) => {
 	try {
-		await SetorModel.update(
+		await SectorModel.update(
 			{
 				id: data.id,
 				activate: data.activate,
@@ -51,16 +54,16 @@ const disableEnableSetor = async (data) => {
 				},
 			}
 		)
-		return await getSetor(data.id)
+		return await getSector(data.id)
 	} catch (error) {
 		throw error
 	}
 }
 
 export default {
-	createSetor,
-	updateSetor,
-	getSetores,
-	getSetor,
-	disableEnableSetor,
+	createSector,
+	updateSector,
+	getSectors,
+	getSector,
+	disableEnableSector,
 }

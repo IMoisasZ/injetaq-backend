@@ -1,6 +1,5 @@
-import Sequelize, { INET } from 'sequelize'
+import Sequelize from 'sequelize'
 import DbConnection from '../connection/mysql.connection.js'
-import ClientModel from './cliente.model.js'
 
 const { INTEGER, STRING, BOOLEAN, DATE } = Sequelize
 
@@ -69,8 +68,6 @@ const DI = DbConnection.define(
 	{ tableName: 'di' }
 )
 
-DI.sync({ alter: true })
-
-DI.belongsTo(ClientModel, { foreignKey: 'client_id' })
+DI.sync()
 
 export default DI

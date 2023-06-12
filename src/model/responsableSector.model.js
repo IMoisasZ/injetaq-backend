@@ -1,5 +1,6 @@
 import Sequelize from 'sequelize'
 import DbConnection from '../connection/mysql.connection.js'
+import SectorModel from './sector.model.js'
 
 const { INTEGER, STRING, BOOLEAN } = Sequelize
 
@@ -35,6 +36,6 @@ const ResponsableSector = DbConnection.define(
 	{ tableName: 'responsable_sector' }
 )
 
-ResponsableSector.sync({ alter: true })
+ResponsableSector.sync()
 
 export default ResponsableSector

@@ -1,6 +1,6 @@
 import DIModel from '../model/di.model.js'
-import ClienteModel from '../model/cliente.model.js'
 import sequelize from 'sequelize'
+import ClientModel from '../model/cliente.model.js'
 
 const createDI = async (di) => {
 	try {
@@ -26,13 +26,7 @@ const updateDI = async (di) => {
 
 const getDIs = async () => {
 	try {
-		return await DIModel.findAll({
-			include: [
-				{
-					model: ClienteModel,
-				}
-			],
-		})
+		return await DIModel.findAll({ include: { model: ClientModel } })
 	} catch (error) {
 		throw error
 	}
@@ -40,13 +34,7 @@ const getDIs = async () => {
 
 const getDI = async (id) => {
 	try {
-		return await DIModel.findByPk(id, {
-			include: [
-				{
-					model: ClienteModel,
-				}
-			],
-		})
+		return await DIModel.findByPk(id)
 	} catch (error) {
 		throw error
 	}

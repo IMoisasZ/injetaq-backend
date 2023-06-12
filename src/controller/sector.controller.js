@@ -1,67 +1,68 @@
-import SetorService from '../service/sector.service.js'
+import SectorService from '../service/sector.service.js'
 
-const createSetor = async (req, res, next) => {
+const createSector = async (req, res, next) => {
 	try {
-		const setor = req.body
+		const sector = req.body
+		console.log(sector)
+		if (!sector.description) {
+			return res
+				.status(404)
+				.json({ msg: 'O nome do setor deve ser informado!' })
+		}
+		res.send(await SectorService.createSector(sector))
+		logger.info(`POST - /sector/add - ${JSON.stringify}`)
+	} catch (error) {
+		next(error)
+	}
+}
+
+const updateSector = async (req, res, next) => {
+	try {
+		const sector = req.body
 		if (!setor.description) {
 			return res
 				.status(404)
 				.json({ msg: 'O nome do setor deve ser informado!' })
 		}
-		res.send(await SetorService.createSetor(setor))
-		loggers.info(`POST - /setor/add - ${JSON.stringify}`)
+		res.send(await SectorService.updateSector(sector))
+		logger.info(`PATCH - /sector/update - ${JSON.stringify}`)
 	} catch (error) {
 		next(error)
 	}
 }
 
-const updateSetor = async (req, res, next) => {
+const getSectors = async (req, res, next) => {
 	try {
-		const setor = req.body
-		if (!setor.description) {
-			return res
-				.status(404)
-				.json({ msg: 'O nome do setor deve ser informado!' })
-		}
-		res.send(await SetorService.updateSetor(setor))
-		loggers.info(`PATCH - /setor/update - ${JSON.stringify}`)
+		res.send(await SectorService.getSectors())
+		logger.info(`GET - setor/data - ALL SETORES`)
 	} catch (error) {
 		next(error)
 	}
 }
 
-const getSetores = async (req, res, next) => {
+const getSector = async (req, res, next) => {
 	try {
-		res.send(await SetorService.getSetores())
-		loggers.info(`GET - setor/data - ALL SETORES`)
+		res.send(await SectorService.getSector(req.params.id))
+		logger.info(`GET - /setor/data/:${req.params.id}`)
 	} catch (error) {
 		next(error)
 	}
 }
 
-const getSetor = async (req, res, next) => {
-	try {
-		res.send(await SetorService.getSetor(req.params.id))
-		loggers.info(`GET - /setor/data/:${req.params.id}`)
-	} catch (error) {
-		next(error)
-	}
-}
-
-const disableEnableSetor = async (req, res, next) => {
+const disableEnableSector = async (req, res, next) => {
 	try {
 		const data = req.body
-		res.send(await SetorService.disableEnableSetor(data))
-		loggers.info(`PUT - /setor/update - ${JSON.stringify(data)}`)
+		res.send(await SectorService.disableEnableSector(data))
+		logger.info(`PUT - /setor/update - ${JSON.stringify(data)}`)
 	} catch (error) {
 		next(error)
 	}
 }
 
 export default {
-	createSetor,
-	updateSetor,
-	getSetores,
-	getSetor,
-	disableEnableSetor,
+	createSector,
+	updateSector,
+	getSectors,
+	getSector,
+	disableEnableSector,
 }

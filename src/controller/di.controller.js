@@ -35,6 +35,7 @@ const updateDI = async (req, res, next) => {
 const getDIs = async (req, res, next) => {
 	try {
 		res.send(await DIService.getDIs())
+
 		logger.info(`GET - /di/data - ALL DI's`)
 	} catch (error) {
 		next(error)

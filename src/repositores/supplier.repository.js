@@ -1,4 +1,5 @@
 import SupplierModel from '../model/supplier.model.js'
+import ContactSupplierModel from '../model/contactSupplier.model.js'
 
 const createSupplier = async (supplier) => {
 	try {
@@ -24,7 +25,9 @@ const updateSupplier = async (supplier) => {
 
 const getSuppliers = async () => {
 	try {
-		return await SupplierModel.findAll()
+		return await SupplierModel.findAll({
+			include: { model: ContactSupplierModel },
+		})
 	} catch (error) {
 		throw error
 	}

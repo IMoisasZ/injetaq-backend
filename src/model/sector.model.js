@@ -1,9 +1,11 @@
 import Sequelize from 'sequelize'
 import DbConnection from '../connection/mysql.connection.js'
+import ResponsableSectorModel from './responsableSector.model.js'
+
 const { INTEGER, STRING, BOOLEAN } = Sequelize
 
-const Setor = DbConnection.define(
-	'setor',
+const Sector = DbConnection.define(
+	'sector',
 	{
 		id: {
 			type: INTEGER,
@@ -24,9 +26,12 @@ const Setor = DbConnection.define(
 			defaultValue: true,
 		},
 	},
-	{ tableName: 'setor' }
+	{ tableName: 'sector' }
 )
 
-Setor.sync({ alter: true })
+Sector.sync()
 
-export default Setor
+Sector.hasMany(ResponsableSectorModel, { foreignKey: 'sector_id' })
+ResponsableSectorModel.belongsTo(Sector, { foreignKey: 'sector_id' })
+
+export default Sector

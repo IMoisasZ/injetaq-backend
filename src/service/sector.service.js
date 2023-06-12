@@ -1,51 +1,51 @@
-import SetorRepository from '../repositores/sector.repository.js'
+import SectorRepository from '../repositores/sector.repository.js'
 
-const createSetor = async (setor) => {
+const createSector = async (setor) => {
 	try {
 		setor.description = setor.description.toUpperCase()
-		return await SetorRepository.createSetor(setor)
+		return await SectorRepository.createSector(setor)
 	} catch (error) {
 		throw error
 	}
 }
 
-const updateSetor = async (setor) => {
+const updateSector = async (setor) => {
 	try {
 		setor.description = setor.description.toUpperCase()
-		return await SetorRepository.updateSetor(setor)
+		return await SectorRepository.updateSector(setor)
 	} catch (error) {
 		throw error
 	}
 }
 
-const getSetores = async () => {
+const getSectors = async () => {
 	try {
-		return await SetorRepository.getSetores()
+		return await SectorRepository.getSectors()
 	} catch (error) {
 		throw error
 	}
 }
 
-const getSetor = async (id) => {
+const getSector = async (id) => {
 	try {
-		return await SetorRepository.getSetor(id)
+		return await SectorRepository.getSector(id)
 	} catch (error) {
 		throw error
 	}
 }
 
-const disableEnableSetor = async (data) => {
+const disableEnableSector = async (data) => {
 	try {
-		return await SetorRepository.disableEnableSetor(data)
+		return await SectorRepository.disableEnableSector(data)
 	} catch (error) {
 		throw error
 	}
 }
 
 export default {
-	createSetor,
-	updateSetor,
-	getSetores,
-	getSetor,
-	disableEnableSetor,
+	createSector,
+	updateSector,
+	getSectors,
+	getSector,
+	disableEnableSector,
 }

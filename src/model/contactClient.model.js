@@ -1,9 +1,9 @@
 import Sequelize from 'sequelize'
 import DbConnection from '../connection/mysql.connection.js'
 
-const { INTEGER, STRING, BOOLEAN } = Sequelize
+const { INTEGER, STRING } = Sequelize
 const ContactClient = DbConnection.define(
-	'contact_client',
+	'ContactClient',
 	{
 		id: {
 			type: INTEGER,
@@ -31,6 +31,6 @@ const ContactClient = DbConnection.define(
 	{ tableName: 'contact_client' }
 )
 
-ContactClient.sync({ alter: true })
+ContactClient.sync()
 
 export default ContactClient

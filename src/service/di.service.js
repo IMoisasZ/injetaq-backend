@@ -1,4 +1,7 @@
 import DIRepository from '../repositores/di.repository.js'
+import ContactClientRepository from '../repositores/contactClient.repository.js'
+import ContactSupplierRepository from '../repositores/contactSupplier.repository.js'
+import ResponsableSectorRepository from '../repositores/responsableSector.repository.js'
 
 const createDI = async (di) => {
 	try {
