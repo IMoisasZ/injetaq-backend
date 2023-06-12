@@ -53,6 +53,21 @@ const getContactClient = async (id) => {
 	}
 }
 
+const disableEnableContactClient = async (data) =>{
+	try {
+		return await ContaClientModel.update(
+			{
+				activate: data.activate
+			}, {
+			where: {
+				id: data.id
+			}
+		})
+	} catch (error) {
+		throw error
+	}
+}
+
 const deleteContactClient = async (id) => {
 	try {
 		await ContaClientModel.destroy({
@@ -72,5 +87,6 @@ export default {
 	getContactClientsByClient,
 	getContactClients,
 	getContactClient,
+	disableEnableContactClient,
 	deleteContactClient,
 }

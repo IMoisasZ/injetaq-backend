@@ -11,18 +11,22 @@ const Images = DbConnetion.define(
 			primaryKey: true,
 			autoIncrement: true,
 		},
-		alert_number: {
+		name: {
 			type: STRING,
-			allowNull: true,
+			allowNull: false
 		},
-		rnc_number: {
-			type: STRING,
-			allowNull: true,
-		},
-		description: {
-			type: STRING,
-			allowNull: false,
-		},
+		// alert_number: {
+		// 	type: STRING,
+		// 	allowNull: true,
+		// },
+		// rnc_number: {
+		// 	type: STRING,
+		// 	allowNull: true,
+		// },
+		// description: {
+		// 	type: STRING,
+		// 	allowNull: false,
+		// },
 		src: {
 			type: STRING,
 			allowNull: false,
@@ -31,6 +35,6 @@ const Images = DbConnetion.define(
 	{ tableName: 'images' }
 )
 
-// Images.sync()
+Images.sync()
 
 export default Images

@@ -1,7 +1,7 @@
 import Sequelize from 'sequelize'
 import DbConnection from '../connection/mysql.connection.js'
 
-const { INTEGER, STRING } = Sequelize
+const { INTEGER, STRING, BOOLEAN } = Sequelize
 const ContactClient = DbConnection.define(
 	'ContactClient',
 	{
@@ -27,6 +27,10 @@ const ContactClient = DbConnection.define(
 			type: STRING,
 			allowNull: true,
 		},
+		activate: {
+			type: BOOLEAN,
+			defaultValue: true
+		}
 	},
 	{ tableName: 'contact_client' }
 )

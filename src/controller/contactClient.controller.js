@@ -61,6 +61,16 @@ const getContactClient = async (req, res, next) => {
 	}
 }
 
+const disableEnableContactClient = async (req, res, next) => {
+	try {
+		const data = req.body
+		res.send(await ContactClientService.disableEnableContactClient(data))
+		logger.info(`PUT - /contact_client/update - ${JSON.stringify(data)}`)
+	} catch (error) {
+		throw error
+	}
+}
+
 const deleteContactClient = async (req, res, next) => {
 	try {
 		res.send(await ContactClientService.deleteContactClient(req.params.id))
@@ -76,5 +86,6 @@ export default {
 	getContactClientsByClient,
 	getContactClients,
 	getContactClient,
+	disableEnableContactClient,
 	deleteContactClient,
 }

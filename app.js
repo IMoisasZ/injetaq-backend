@@ -28,7 +28,7 @@ app.use(express.json())
 app.use(cors())
 
 // routes
-app.use('/cliente', ClienteRoute)
+app.use('/client', ClienteRoute)
 app.use('/sector', SectorRoute)
 app.use('/di', DIRoute)
 app.use('/alerta_qualidade', AlertaQualidadeRoute)

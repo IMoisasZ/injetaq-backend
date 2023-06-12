@@ -43,6 +43,14 @@ const getContactClient = async (id) => {
     }
 }
 
+const disableEnableContactClient = async (data) => {
+    try {
+        return await ContactClientRepository.disableEnableContactClient(data)
+    } catch (error) {
+        throw error
+    }
+}
+
 const deleteContactClient = async (id) => {
     try {
         return await ContactClientRepository.deleteContactClient(id)
@@ -57,5 +65,6 @@ export default {
     getContactClientsByClient,
     getContactClients,
     getContactClient,
+    disableEnableContactClient,
     deleteContactClient
 }
