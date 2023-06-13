@@ -10,5 +10,6 @@ route.get('/data', ContactClientController.getContactClients)
 route.get('/data/:client_id', ContactClientController.getContactClient)
 route.put('/update', ContactClientController.disableEnableContactClient)
 route.delete('/delete/:id', ContactClientController.deleteContactClient)
+route.put('/main/update', ContactClientController.mainContactClient)
 
 export default route

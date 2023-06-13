@@ -27,6 +27,7 @@ const ResponsableSector = DbConnection.define(
 		email: {
 			type: STRING,
 			allowNull: false,
+			unique: true
 		},
 		activate: {
 			type: BOOLEAN,

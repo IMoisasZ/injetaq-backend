@@ -13,6 +13,7 @@ const ContactClient = DbConnection.define(
 		client_id: {
 			type: INTEGER,
 			allowNull: false,
+			foreignKey: true
 		},
 		name: {
 			type: STRING,
@@ -30,6 +31,10 @@ const ContactClient = DbConnection.define(
 		activate: {
 			type: BOOLEAN,
 			defaultValue: true
+		},
+		main: {
+			type: BOOLEAN,
+			defaultValue: false
 		}
 	},
 	{ tableName: 'contact_client' }
@@ -38,3 +43,4 @@ const ContactClient = DbConnection.define(
 ContactClient.sync()
 
 export default ContactClient
+

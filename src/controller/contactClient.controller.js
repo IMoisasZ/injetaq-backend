@@ -3,6 +3,7 @@ import ContactClientService from '../service/contactClient.service.js'
 const createContactClient = async (req, res, next) => {
 	try {
 		const contact = req.body
+		console.log(contact);
 		if (!contact.name) {
 			return res.status(404).json({ msg: 'O nome deve ser informado!' })
 		}
@@ -46,7 +47,7 @@ const getContactClientsByClient = async (req, res, next) => {
 const getContactClients = async (req, res, next) => {
 	try {
 		res.send(await ContactClientService.getContactClients(req.params.client_id))
-		logger.info(`GET - /contact_client/data/:${req} - ALL CONTACTS BY CLIENT`)
+		logger.info(`GET - /contact_client/data/:${req.params.client_id} - ALL CONTACTS BY CLIENT`)
 	} catch (error) {
 		next(error)
 	}
@@ -64,10 +65,11 @@ const getContactClient = async (req, res, next) => {
 const disableEnableContactClient = async (req, res, next) => {
 	try {
 		const data = req.body
-		res.send(await ContactClientService.disableEnableContactClient(data))
+		const resp = await ContactClientService.disableEnableContactClient(data)
+		res.send(resp)
 		logger.info(`PUT - /contact_client/update - ${JSON.stringify(data)}`)
 	} catch (error) {
-		throw error
+		next(error)
 	}
 }
 
@@ -75,6 +77,17 @@ const deleteContactClient = async (req, res, next) => {
 	try {
 		res.send(await ContactClientService.deleteContactClient(req.params.id))
 		logger.info(`DELETE - /contact_client/delete/:${req.params.id}`)
+	} catch (error) {
+		next(error)
+	}
+}
+
+const mainContactClient = async (req, res, next) => {
+	try {
+		const data = req.body
+		const resp = await ContactClientService.mainContactClient(data)
+		res.send(resp)
+		logger.info(`/PUT - /contact_client/main/update - ${JSON.stringify(data)}}`)
 	} catch (error) {
 		next(error)
 	}
@@ -88,4 +101,5 @@ export default {
 	getContactClient,
 	disableEnableContactClient,
 	deleteContactClient,
+	mainContactClient
 }

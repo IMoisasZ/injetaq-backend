@@ -1,5 +1,6 @@
 import ContaClientModel from '../model/contactClient.model.js'
 import ClientModel from '../model/cliente.model.js'
+import {Op} from 'sequelize'
 
 const createContactClient = async (contact) => {
 	try {
@@ -55,7 +56,7 @@ const getContactClient = async (id) => {
 
 const disableEnableContactClient = async (data) =>{
 	try {
-		return await ContaClientModel.update(
+		await ContaClientModel.update(
 			{
 				activate: data.activate
 			}, {
@@ -63,6 +64,7 @@ const disableEnableContactClient = async (data) =>{
 				id: data.id
 			}
 		})
+		return await getContactClient(data.id)
 	} catch (error) {
 		throw error
 	}
@@ -81,6 +83,37 @@ const deleteContactClient = async (id) => {
 	}
 }
 
+const mainContactClient = async (data) => {
+	try {
+		await ContaClientModel.update({
+			main: data.main
+		},{
+			where: {
+				id: data.id
+			}
+		})
+		return await getContactClient(data.id)
+	} catch (error) {
+		throw error
+	}
+}
+
+const clearMainContact = async () => {
+	try {
+		await ContaClientModel.update({
+			main: false
+		},{
+			where: {
+				main: {
+					[Op.eq] : true
+				}
+			}
+		})
+	} catch (error) {
+		throw error
+	}
+}
+
 export default {
 	createContactClient,
 	updateContactClient,
@@ -89,4 +122,6 @@ export default {
 	getContactClient,
 	disableEnableContactClient,
 	deleteContactClient,
+	mainContactClient,
+	clearMainContact
 }

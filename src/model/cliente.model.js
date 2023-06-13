@@ -32,9 +32,10 @@ const Client = DbConnection.define(
 
 Client.sync()
 
-Client.hasMany(ContactClient, { foreignKey: 'client_id' })
-ContactClient.belongsTo(Client, { foreignKey: 'id' })
-Client.hasMany(DIModel, { foreignKey: 'client_id' })
-DIModel.belongsTo(Client, { foreignKey: 'id' })
+ContactClient.belongsTo(Client, { foreignKey: 'client_id', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+Client.hasMany(ContactClient, { foreignKey: 'client_id', onDelete: 'CASCADE', onUpdate: 'CASCADE'  })
+
+DIModel.belongsTo(Client, {foreignKey: 'client_id'})
+Client.hasMany(DIModel, {foreignKey: 'client_id'})
 
 export default Client

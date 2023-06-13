@@ -45,7 +45,13 @@ const getContactClient = async (id) => {
 
 const disableEnableContactClient = async (data) => {
     try {
-        return await ContactClientRepository.disableEnableContactClient(data)
+        const { main } = await ContactClientRepository.getContactClient(data.id)
+
+        if(!main){
+            return await ContactClientRepository.disableEnableContactClient(data)
+        }
+        
+        throw new Error (`Antes de desativar o contato PRINCIPAL, coloque outro como PRINCIPAL!`)
     } catch (error) {
         throw error
     }
@@ -59,6 +65,22 @@ const deleteContactClient = async (id) => {
     }
 }
 
+const mainContactClient = async (data) => {
+    try {
+        const {activate} = await ContactClientRepository.getContactClient(data.id)
+
+        if(!activate && data.main){
+            throw new Error(`Não é possivel colocar um contato como PRINCIPAL se ele estiver desativado!`)
+        }
+
+        await ContactClientRepository.clearMainContact()
+
+        return await ContactClientRepository.mainContactClient(data)
+    } catch (error) {
+        throw error
+    }
+}
+
 export default {
     createContactClient,
     updateContactClient,
@@ -66,5 +88,6 @@ export default {
     getContactClients,
     getContactClient,
     disableEnableContactClient,
-    deleteContactClient
+    deleteContactClient,
+    mainContactClient
 }
