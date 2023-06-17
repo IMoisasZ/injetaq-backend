@@ -11,26 +11,30 @@ const Images = DbConnetion.define(
 			primaryKey: true,
 			autoIncrement: true,
 		},
-		name: {
+		alert_id: {
+			type: INTEGER,
+			allowNull: true
+		},
+		rnc_id: {
+			type: INTEGER,
+			allowNull: true
+		},
+		name: { //original name
 			type: STRING,
 			allowNull: false
 		},
-		// alert_number: {
-		// 	type: STRING,
-		// 	allowNull: true,
-		// },
-		// rnc_number: {
-		// 	type: STRING,
-		// 	allowNull: true,
-		// },
-		// description: {
-		// 	type: STRING,
-		// 	allowNull: false,
-		// },
-		src: {
+		src: { //filename
+			type: STRING,
+			allowNull: false
+		},
+		description: {
 			type: STRING,
 			allowNull: false,
 		},
+		url_default: {
+			type: STRING,
+			allowNull: false
+		}
 	},
 	{ tableName: 'images' }
 )

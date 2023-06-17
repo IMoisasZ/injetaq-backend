@@ -3,7 +3,7 @@ import SectorService from '../service/sector.service.js'
 const createSector = async (req, res, next) => {
 	try {
 		const sector = req.body
-		console.log(sector)
+
 		if (!sector.description) {
 			return res
 				.status(404)
@@ -19,7 +19,7 @@ const createSector = async (req, res, next) => {
 const updateSector = async (req, res, next) => {
 	try {
 		const sector = req.body
-		if (!setor.description) {
+		if (!sector.description) {
 			return res
 				.status(404)
 				.json({ msg: 'O nome do setor deve ser informado!' })

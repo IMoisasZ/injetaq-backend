@@ -2,12 +2,23 @@ import ImagesService from '../service/images.service.js'
 
 const createImage = async (req, res, next) => {
 	try {
+		// data body
+		const dataFront = req.body
+		
+		// data file
 		const file = req.file
+
+		// created file 
 		const originalName = file.originalname
-		console.log(originalName)
+		file.url_default = url
+		file.name = file.filename
+		file.src = file.path
+		file.alert_id = dataFront.alert_id
+		file.rnc_id = dataFront.rnc_id
+		file.description = dataFront.description
 
-		const image = { name: file.filename.toString(), src: file.path }
-
+		const image = file
+		console.log(image);
 		res.send(await ImagesService.createImage(image))
 		logger.info(`POST - /images/add - ${JSON.stringify(image)}`)
 	} catch (error) {

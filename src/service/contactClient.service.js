@@ -3,7 +3,10 @@ import {upperCase} from '../utils/upperCase.utils.js'
 
 const createContactClient = async (contact) => {
     try {
+        await ContactClientRepository.clearMainContact()
+
         contact.name = upperCase(contact.name)
+        
         return await ContactClientRepository.createContactClient(contact)
     } catch (error) {
         throw error

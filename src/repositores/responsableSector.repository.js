@@ -1,3 +1,4 @@
+import responsableSectorController from '../controller/responsableSector.controller.js'
 import ResponsableSectorModel from '../model/responsableSector.model.js'
 import SectorModel from '../model/sector.model.js'
 
@@ -75,6 +76,32 @@ const disableEnableResponsableSector = async (data) => {
 	}
 }
 
+const mainResponsableSector = async (data) => {
+	try {
+		await ResponsableSectorModel.update({
+			main: data.main
+		},{
+			where: {
+				id: data.id
+			}
+		})
+	} catch (error) {
+		throw error
+	}
+}
+
+const clearMainResponsableSector = async () => {
+	try {
+		return await ResponsableSectorModel.update({
+			main: false
+		},{
+			where:{}
+		})
+	} catch (error) {
+		throw error
+	}
+}
+
 export default {
 	createResponsableSector,
 	updateResponsableSector,
@@ -82,4 +109,6 @@ export default {
 	getResponsablesSectorsBySector,
 	getResponsableSector,
 	disableEnableResponsableSector,
+	mainResponsableSector,
+	clearMainResponsableSector
 }

@@ -12,5 +12,6 @@ route.get(
 )
 route.get('/data/:id', ContactSupplierController.getContactSupplier)
 route.put('/update', ContactSupplierController.disableEnableContactSupplier)
+route.put('/main/update', ContactSupplierController.mainContactSupplier)
 
 export default route

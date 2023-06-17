@@ -90,10 +90,20 @@ const getResponsableSector = async (req, res, next) => {
 const disableEnableResponsableSector = async (req, res, next) => {
 	try {
 		const data = req.body
-		res.send(
-			await ResponsableSectorService.disableEnableResponsableSector(data)
-		)
+		const response = await ResponsableSectorService.disableEnableResponsableSector(data)
+		res.send(response)
 		logger.info(`PUT - /responsable_sector/update - ${JSON.stringify(data)}`)
+	} catch (error) {
+		next(error)
+	}
+}
+
+const mainResponsableSector = async (req, res, next) => {
+	try {
+		const data = req.body
+		const response = await ResponsableSectorService.mainResponsableSector(data)
+		res.send(response)
+		logger.infor(`PUT - /responsable_sector/main/update - ${JSON.stringify(data)}`)
 	} catch (error) {
 		next(error)
 	}
@@ -106,4 +116,5 @@ export default {
 	getResponsablesBySector,
 	getResponsableSector,
 	disableEnableResponsableSector,
+	mainResponsableSector
 }

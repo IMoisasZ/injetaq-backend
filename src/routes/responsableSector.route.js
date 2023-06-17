@@ -12,5 +12,6 @@ route.get(
 )
 route.get('/data/:id', ResponsableSectorController.getResponsableSector)
 route.put('/update', ResponsableSectorController.disableEnableResponsableSector)
+route.put('/main/update', ResponsableSectorController.mainResponsableSector)
 
 export default route

@@ -4,6 +4,9 @@ import { upperCase } from '../utils/upperCase.utils.js'
 const createResponsableSector = async (responsable) => {
 	try {
 		responsable.name = await upperCase(responsable.name)
+
+		await ResponsableSectorRepository.clearMainResponsableSector()
+
 		return await ResponsableSectorRepository.createResponsableSector(
 			responsable
 		)
@@ -51,9 +54,31 @@ const getResponsableSector = async (id) => {
 
 const disableEnableResponsableSector = async (data) => {
 	try {
+		const {main} = await ResponsableSectorRepository.getResponsableSector(data.id)
+
+		if(main){
+			throw new Error('Não é possivel desativar um contato PRINCIPAL. Selecione outro contato como PRINCIPAL antes.')
+		}
+
 		return await ResponsableSectorRepository.disableEnableResponsableSector(
 			data
 		)
+	} catch (error) {
+		throw error
+	}
+}
+
+const mainResponsableSector = async (data) => {
+	try {
+		const {activate} = await ResponsableSectorRepository.getResponsableSector(data.id)
+
+		if(!activate && data.main) {
+			throw new Error(`Não é possivel colocar um contato desativado como PRINCIPAL!`)
+		}
+
+		await ResponsableSectorRepository.clearMainResponsableSector()
+
+		return await ResponsableSectorRepository.mainResponsableSector(data)
 	} catch (error) {
 		throw error
 	}
@@ -66,4 +91,5 @@ export default {
 	getResponsablesBySector,
 	getResponsableSector,
 	disableEnableResponsableSector,
+	mainResponsableSector
 }

@@ -16,7 +16,6 @@ import ContactClientRoute from './src/routes/contactClient.route.js'
 import SupplierRoute from './src/routes/supplier.route.js'
 import ContactSupplierRoute from './src/routes/contactSupplier.route.js'
 import ImagesRoute from './src/routes/images.route.js'
-import { log } from 'console'
 
 // app
 const app = express()
@@ -38,10 +37,9 @@ app.use('/supplier', SupplierRoute)
 app.use('/contact_supplier', ContactSupplierRoute)
 app.use('/images', ImagesRoute)
 
-console.log(__dirname)
-
 // route image
 app.use('/files', express.static(path.resolve(__dirname, 'src', 'uploads')))
+global.url = `http://localhost:3001/files/`
 
 // winston(log)
 const { combine, timestamp, label, printf } = winston.format

@@ -31,6 +31,10 @@ const ContactSupplier = DbConnection.define(
 			type: STRING,
 			allowNull: true,
 		},
+		main: {
+			type: BOOLEAN,
+			defaultValue: false
+		},
 		activate: {
 			type: BOOLEAN,
 			defaultValue: true,
@@ -39,6 +43,6 @@ const ContactSupplier = DbConnection.define(
 	{ tableName: 'contact_supplier' }
 )
 
-ContactSupplier.sync()
+ContactSupplier.sync({alter: true})
 
 export default ContactSupplier

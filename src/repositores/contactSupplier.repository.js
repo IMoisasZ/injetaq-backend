@@ -75,6 +75,34 @@ const disableEnableContactSupplier = async (data) => {
 	}
 }
 
+const mainContactSupplier = async (data) => {
+	try {
+		await ContactSupplierModel.update({
+			main: data.main
+		},{
+			where: {
+				id: data.id
+			}
+		})
+	} catch (error) {
+		throw error
+	}
+}
+
+const clearMainContactSupplier = async () => {
+	try {
+		await ContactSupplierModel.update({
+			main: false
+		},{
+			where:{
+				main: true
+			}
+		})
+	} catch (error) {
+		throw error
+	}
+}
+
 export default {
 	createContactSupplier,
 	updateContactSupplier,
@@ -82,4 +110,6 @@ export default {
 	getContactsBySupplier,
 	getContactSupplier,
 	disableEnableContactSupplier,
+	mainContactSupplier,
+	clearMainContactSupplier
 }
